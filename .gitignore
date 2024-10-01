@@ -6,6 +6,7 @@ history
 logs
 storage
 schedules
+junit
 dagster.yaml
 .telemetry/
 
