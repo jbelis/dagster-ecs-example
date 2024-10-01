@@ -1,7 +1,6 @@
 from dagster import ExecuteInProcessResult
 from hwp import defs
 import pytest
-from pytest import mark
 
 @pytest.mark.skip(reason="fails in github workflow")
 def test_job():
