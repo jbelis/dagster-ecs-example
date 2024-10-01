@@ -36,4 +36,6 @@ jobs:
       run: |
         pip install ruff
         ruff check --output-format=github .
-        
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag codekarma/dagster-ecs-example:latest
