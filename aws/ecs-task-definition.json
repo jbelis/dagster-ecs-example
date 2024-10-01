@@ -1,0 +1,15 @@
+{
+    "family": "dagster-example",
+    "networkMode": "awsvpc",
+    "executionRoleArn" : "arn:aws:iam::922401995122:role/ecsTaskExecutionRole",
+    "containerDefinitions": [
+        {
+            "name": "dagster-example",
+            "image": "922401995122.dkr.ecr.eu-central-1.amazonaws.com/codekarma/dagster-ecs-example:latest",
+            "essential": true
+        }
+    ],
+    "requiresCompatibilities": ["FARGATE"],
+    "cpu": "256",
+    "memory": "512"
+}
