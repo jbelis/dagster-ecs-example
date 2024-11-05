@@ -130,7 +130,7 @@ resource "aws_ecs_cluster" "tfer--codekarma-cluster" {
 }
 
 resource "aws_ecs_task_definition" "tfer--task-definition-002F-ecstest924" {
-  container_definitions    = "[{\"environment\":[{\"name\":\"AWS_ACCESS_KEY_ID\",\"value\":\"AKIA5NQ3RPFZMFO7VIHG\"},{\"name\":\"AWS_BUCKET\",\"value\":\"ecstest924\"},{\"name\":\"AWS_SECRET_ACCESS_KEY\",\"value\":\"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\"}],\"environmentFiles\":[],\"essential\":true,\"image\":\"922401995122.dkr.ecr.eu-central-1.amazonaws.com/codekarma/ecstest924:latest\",\"logConfiguration\":{\"logDriver\":\"awslogs\",\"options\":{\"awslogs-stream-prefix\":\"ecs\",\"awslogs-group\":\"/ecs/ecstest924\",\"mode\":\"non-blocking\",\"awslogs-create-group\":\"true\",\"max-buffer-size\":\"25m\",\"awslogs-region\":\"eu-central-1\"},\"secretOptions\":[]},\"mountPoints\":[],\"name\":\"ecstest924\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]"
+  container_definitions    = "[{\"environment\":[{\"name\":\"AWS_BUCKET\",\"value\":\"ecstest924\"}],\"environmentFiles\":[],\"essential\":true,\"image\":\"922401995122.dkr.ecr.eu-central-1.amazonaws.com/codekarma/ecstest924:latest\",\"logConfiguration\":{\"logDriver\":\"awslogs\",\"options\":{\"awslogs-stream-prefix\":\"ecs\",\"awslogs-group\":\"/ecs/ecstest924\",\"mode\":\"non-blocking\",\"awslogs-create-group\":\"true\",\"max-buffer-size\":\"25m\",\"awslogs-region\":\"eu-central-1\"},\"secretOptions\":[]},\"mountPoints\":[],\"name\":\"ecstest924\",\"portMappings\":[],\"systemControls\":[],\"volumesFrom\":[]}]"
   cpu                      = "256"
   execution_role_arn       = "arn:aws:iam::922401995122:role/ecsTaskExecutionRole"
   family                   = "ecstest924"
