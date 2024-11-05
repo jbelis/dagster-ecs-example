@@ -34,6 +34,19 @@ jobs:
         pip install pytest pytest-cov
         pytest --doctest-modules --junitxml=junit/test-results.xml --cov=hwp --cov-report=xml --cov-report=html hwp_test
 
+    - name: Code Coverage Report
+      uses: irongut/CodeCoverageSummary@v1.3.0
+      with:
+        filename: coverage.xml
+        badge: true
+        fail_below_min: true
+        format: markdown
+        hide_branch_rate: false
+        hide_complexity: true
+        indicators: true
+        output: both
+        thresholds: '30 80'
+
     - name: Lint with Ruff
       run: |
         pip install ruff
