@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from dagster import asset, AssetKey, AssetSpec, AssetIn, SourceAsset
+from dagster import asset, AssetKey, AssetSpec
 
 source_filename = os.getenv("SOURCE_FILENAME")
 aws_bucket = os.getenv("AWS_BUCKET")

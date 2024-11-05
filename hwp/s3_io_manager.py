@@ -2,7 +2,7 @@ import os
 from dagster import io_manager, InputContext, OutputContext, ConfigurableIOManager
 import pandas as pd
 from typing import ClassVar
-import json
+
 
 class _S3IOManager(ConfigurableIOManager):
     bucket: ClassVar[str] = os.getenv("AWS_BUCKET")
@@ -15,13 +15,13 @@ class _S3IOManager(ConfigurableIOManager):
     def _s3_input_url(self, context: InputContext, suffix = "") -> str:
         url = None
         # if a input filename is provided, use it
-        if context.upstream_output != None:
+        if context.upstream_output is not None:
             uri = context.upstream_output.metadata.get("dagster/uri")
-            if uri != None:
+            if uri is not None:
                 url = f"{uri}{suffix}"
 
         # Otherwise construct a url from context path
-        if url == None:
+        if url is None:
             filepath = os.path.join(*context.asset_key.path)
             url = f"s3://{self.bucket}/{filepath}{suffix}"
 
