@@ -9,6 +9,12 @@ schedules
 junit
 dagster.yaml
 .telemetry/
+.logs_queue
+**/generated/**
+generated/**
+**/.terraform
+.terraform.*
+.ruff_cache
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
