@@ -38,12 +38,12 @@ class S3CSVIOManager(_S3IOManager):
     def handle_output(self, context: OutputContext, obj: pd.DataFrame):
         url = self._s3_url(context, ".csv")
         context.log.info(f"Writing object to {url}")
-        obj.to_csv(url, storage_options=self.credentials)
+        obj.to_csv(url)
 
     def load_input(self, context: InputContext) -> pd.DataFrame:
         url = self._s3_input_url(context)
         context.log.info(f"Reading data from {url}")
-        return pd.read_csv(url, storage_options=self.credentials)
+        return pd.read_csv(url)
 
 
 @io_manager
@@ -52,10 +52,10 @@ class S3ParquetIOManager(_S3IOManager):
     def handle_output(self, context: OutputContext, obj: pd.DataFrame):
         url = self._s3_url(context, ".parquet")
         context.log.info(f"Writing object to {url}")
-        obj.to_parquet(url, storage_options=self.credentials)
+        obj.to_parquet(url)
 
     def load_input(self, context: InputContext) -> pd.DataFrame:
         url = self._s3_input_url(context)
         context.log.info(f"Reading data from {url}")
-        return pd.read_parquet(url, storage_options=self.credentials)
+        return pd.read_parquet(url)
 

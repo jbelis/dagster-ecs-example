@@ -43,14 +43,6 @@ def lambda_handler(event, context):
                         {
                             'name': 'AWS_BUCKET',
                             'value': bucket
-                        },
-                        {
-                            'name': 'AWS_ACCESS_KEY_ID',
-                            'value': os.getenv("AWS_ACCESS_KEY_ID")
-                        },
-                        {
-                            'name': 'AWS_SECRET_ACCESS_KEY',
-                            'value': os.getenv("AWS_SECRET_ACCESS_KEY")
                         }
                     ]
                 }
