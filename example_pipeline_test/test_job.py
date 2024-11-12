@@ -1,5 +1,5 @@
 from dagster import ExecuteInProcessResult
-from hwp import defs
+from example_pipeline import defs
 import pytest
 
 @pytest.mark.skip(reason="fails in github workflow")

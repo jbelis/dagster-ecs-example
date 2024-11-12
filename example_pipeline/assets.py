@@ -3,7 +3,6 @@ import pandas as pd
 from dagster import asset, AssetKey, AssetSpec
 
 source_path = os.getenv("SOURCE_FILENAME")
-print (source_path)
 source_filename = os.path.splitext(os.path.basename(source_path))[0]
 aws_bucket = os.getenv("AWS_BUCKET")
 

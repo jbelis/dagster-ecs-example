@@ -1,4 +1,4 @@
-from hwp.assets import parquet_asset
+from example_pipeline.assets import parquet_asset
 import pandas as pd
 
 def test_asset():

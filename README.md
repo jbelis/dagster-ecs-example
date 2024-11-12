@@ -16,7 +16,7 @@ pip install -r requirements.txt
 Also, install your Dagster code location as a Python package. By using the --editable flag, pip will install your Python package in ["editable mode"](https://pip.pypa.io/en/latest/topics/local-project-installs/#editable-installs) so that as you develop, local code changes will automatically apply.
 
 ```bash
-pip install -e hwp
+pip install -e .
 ```
 
 ### Running locally using the Dagster UI web server:
@@ -29,6 +29,8 @@ AWS_SESSION_TOKEN=<your AWS session token>
 AWS_BUCKET=<your AWS bucket>
 ```
 One of AWS_SESSION_TOKEN or { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } must be provided
+
+Note: Never ever commit your .env file as it contains your AWS credentials. It is git-ignored.
 
 ```bash
 pip install dagster-webserver
@@ -57,10 +59,10 @@ docker run --env-file .env codekarma/dagster-ecs-example:latest
 Tests are in the `test` directory and you can run tests using `pytest`:
 
 ```bash
-pytest hwp_test
+pytest example_pipeline_test
 ```
 
-## Packaging and Deployment
+## Packaging and Deployment on AWS ECR
 
 ```bash
 docker build . -t codekarma/dagster-ecs-example

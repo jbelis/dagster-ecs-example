@@ -1,5 +1,5 @@
 from dagster import execute_job, DagsterInstance, reconstructable
-from hwp import defs
+from example_pipeline import defs
 
 def return_job_def():
     return defs.get_job_def(name="example_job")

@@ -1,8 +1,8 @@
 from setuptools import find_packages, setup
 
 setup(
-    name="hwp",
-    packages=find_packages(exclude=["hwp_test"]),
+    name="example_pipeline",
+    packages=find_packages(exclude=["example_pipeline_test"]),
     install_requires=[
         "dagster",
         "dagster-aws",

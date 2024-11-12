@@ -1,14 +1,11 @@
 import os
 from dotenv import load_dotenv
 from dagster import Definitions, AssetSelection, define_asset_job
-from hwp.assets import csv_asset, parquet_asset
-from hwp.s3_io_manager import S3CSVIOManager, S3ParquetIOManager
+from example_pipeline.assets import csv_asset, parquet_asset
+from example_pipeline.s3_io_manager import S3CSVIOManager, S3ParquetIOManager
 
 print("__INIT__ EXECUTING")
 load_dotenv()  # take environment variables from .env - used for local testing only
-
-for name, value in os.environ.items():
-    print("{0}: {1}".format(name, value))
 
 job = define_asset_job(name="example_job", selection=AssetSelection.all())
 
