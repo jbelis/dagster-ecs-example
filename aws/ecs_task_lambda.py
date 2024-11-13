@@ -25,11 +25,14 @@ def custom_json_serializer(obj):
 def lambda_handler(event, context):
     logger.info("Event received: %s", json.dumps(event))
     
-    # Get bucket name and file name from the S3 event
+    # get bucket name and file name from the S3 event
     bucket = event['Records'][0]['s3']['bucket']['name']
     key = event['Records'][0]['s3']['object']['key']
+
+    # get ECS parameters from environment variables
     cluster = os.getenv("ECS_CLUSTER")
     task_definition = os.getenv("ECS_TASK_DEFINITION")
+    container_name = os.getenv("ECS_CONTAINER_NAME")
         
     logger.info(f"Triggering s3://{bucket}/{key} processing using cluster {cluster} and task {task_definition}")
     
@@ -41,7 +44,7 @@ def lambda_handler(event, context):
         overrides={
             'containerOverrides': [
                 {
-                    'name': os.getenv("ECS_CONTAINER_NAME"),  # The name of the container in your task definition
+                    'name': container_name,  # The name of the container in your task definition
                     'environment': [
                         {
                             'name': 'SOURCE_FILENAME',
