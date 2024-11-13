@@ -8,7 +8,6 @@ setup(
         "dagster-aws",
         "pandas",
         "s3fs",
-        "python-dotenv",
         "pyarrow",
         "envtpl"
 #        "dagster-cloud"

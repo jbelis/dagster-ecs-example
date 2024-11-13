@@ -19,18 +19,29 @@ Also, install your Dagster code location as a Python package. By using the --edi
 pip install -e .
 ```
 
-### Running locally using the Dagster UI web server:
+### Environment variables
 
-Create a .env file in the base directory containing the following environment variables
 ```bash
 AWS_ACCESS_KEY_ID=<your AWS access key>
 AWS_SECRET_ACCESS_KEY=<your AWS access key secret>
 AWS_SESSION_TOKEN=<your AWS session token>
 AWS_BUCKET=<your AWS bucket>
+SOURCE_FILENAME=<path of input file within bucket>
 ```
-One of AWS_SESSION_TOKEN or { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } must be provided
 
-Note: Never ever commit your .env file as it contains your AWS credentials. It is git-ignored.
+Note: One of AWS_SESSION_TOKEN or { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } must be provided
+
+Note: One way to manage environment variable is to create a .env file in the base directory containing the the above. You can then export the contents to the environments as follows:
+```bash
+set -a            
+source .env
+set +a
+```
+
+Any file ending with .env is ignored by git via .gitignore. Whatever your do, be careful to never
+commit your AWS credentials to git!
+
+### Running locally using the Dagster UI web server:
 
 ```bash
 pip install dagster-webserver
@@ -40,9 +51,6 @@ dagster dev
 ### Running locally using a python main
 
 ```bash
-set -a            
-source .env
-set +a
 export DAGSTER_HOME=`pwd`
 python main.py
 ```
@@ -52,6 +60,13 @@ python main.py
 ```bash
 docker build . -t codekarma/dagster-ecs-example
 docker run --env-file .env codekarma/dagster-ecs-example:latest
+```
+
+### Inspecting the docker image
+
+The following will give you a prompt inside the container instead of running the app.
+```bash
+docker run -ti --env-file .env codekarma/dagster-ecs-example:latest bash
 ```
 
 ### Unit testing

@@ -1,5 +1,6 @@
 .venv*/**
-.env
+*.env
+**/*.env
 data/**
 tmp*
 history
