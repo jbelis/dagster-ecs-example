@@ -31,7 +31,7 @@ SOURCE_FILENAME=<path of input file within bucket>
 
 Note: One of AWS_SESSION_TOKEN or { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } must be provided
 
-Note: One way to manage environment variable is to create a .env file in the base directory containing the the above. You can then export the contents to the environments as follows:
+Note: One way to manage environment variable is to create a .env file in the base directory containing the the above. You can then export the contents to your shell environment as follows:
 ```bash
 set -a            
 source .env
