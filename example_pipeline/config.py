@@ -1,1 +1,1 @@
-S3_URL_METADATA_KEY = "dagster/uri"
+S3_URL_METADATA_KEY = "s3url"
