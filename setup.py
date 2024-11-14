@@ -12,5 +12,5 @@ setup(
         "envtpl"
 #        "dagster-cloud"
     ],
-    extras_require={"dev": ["dagster-webserver", "pytest"]},
+    extras_require={"dev": ["dagster-webserver", "pytest", "pytest-env", "pytest-cov"]},
 )

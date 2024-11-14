@@ -2,6 +2,5 @@ dagster==1.8.8
 pandas==2.2.3
 dagster-aws==0.24.8
 s3fs==2024.9.0
-python-dotenv==1.0.1
 pyarrow==17.0.0
 envtpl==0.7.2
