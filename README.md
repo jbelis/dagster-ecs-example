@@ -86,3 +86,7 @@ aws ecr get-login-password --region <your-aws-region> | docker login --username 
 docker push <your-ecr-registry>:latest
 ```
 
+
+
+
+
