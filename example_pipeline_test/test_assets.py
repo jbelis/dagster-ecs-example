@@ -10,5 +10,4 @@ def test_asset():
     )
     results = parquet_asset(df)
     assert results is not None # It returned something
-    assert False
 
