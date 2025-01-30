@@ -9,7 +9,8 @@ setup(
         "pandas",
         "s3fs",
         "pyarrow",
-        "envtpl"
+        "envtpl",
+        "polars"
 #        "dagster-cloud"
     ],
     extras_require={"dev": ["dagster-webserver", "pytest", "pytest-env", "pytest-cov"]},
