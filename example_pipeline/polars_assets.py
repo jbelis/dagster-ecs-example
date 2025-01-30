@@ -1,5 +1,5 @@
 import os
-import pandas as pd
+import polars as pl
 from dagster import asset, AssetKey, AssetSpec
 import example_pipeline.config as config
 
@@ -8,25 +8,25 @@ source_name = os.path.splitext(os.path.basename(source_path))[0]
 aws_bucket = os.getenv("AWS_BUCKET")
 
 
-csv_asset = AssetSpec(
-    key = AssetKey("csv_asset"),
-    group_name="pandas",
+polars_csv_asset = AssetSpec(
+    key = AssetKey("polars_csv_asset"),
+    group_name="polars",
     metadata = {
-        "dagster/io_manager_key": "csv_io_manager", 
+        "dagster/io_manager_key": "polars_csv_io_manager", 
         config.S3_URL_METADATA_KEY: f"s3://{aws_bucket}/{source_path}"
     }
 )
 
 
-@asset(group_name="pandas", io_manager_key="parquet_io_manager", metadata={
+@asset(group_name="polars", io_manager_key="polars_parquet_io_manager", metadata={
         config.S3_URL_METADATA_KEY: f"s3://{aws_bucket}/out/parquet/{source_name}.parquet"
 })
-def parquet_asset(csv_asset: pd.DataFrame):
-    return csv_asset
+def polars_parquet_asset(polars_csv_asset: pl.DataFrame):
+    return polars_csv_asset
 
 
-@asset(group_name="pandas", io_manager_key="csv_io_manager", metadata={
+@asset(group_name="polars", io_manager_key="polars_csv_io_manager", metadata={
         config.S3_URL_METADATA_KEY: f"s3://{aws_bucket}/out/csv/{source_name}.csv"
 })
-def csv_copy_asset(parquet_asset: pd.DataFrame):
-    return parquet_asset
+def polars_csv_copy_asset(polars_parquet_asset: pl.DataFrame):
+    return polars_parquet_asset
