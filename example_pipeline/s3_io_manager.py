@@ -1,8 +1,10 @@
 import os
 from dagster import io_manager, InputContext, OutputContext, ConfigurableIOManager
 import pandas as pd
+import polars as pl
 from typing import ClassVar
 import example_pipeline.config as config
+import s3fs
 
 
 class _S3IOManager(ConfigurableIOManager):
@@ -59,4 +61,37 @@ class S3ParquetIOManager(_S3IOManager):
         url = self._s3_input_url(context)
         context.log.info(f"Reading parquet data from {url}")
         return pd.read_parquet(url)
+
+
+@io_manager
+class S3ParquetPolarsIOManager(_S3IOManager):
+
+    def handle_output(self, context: OutputContext, obj: pl.DataFrame):
+        url = self._s3_output_url(context)
+        with s3fs.S3FileSystem().open(url, mode='wb') as f:
+            context.log.info(f"Writing object to {url}")
+            obj.write_parquet(f)
+
+    def load_input(self, context: InputContext) -> pl.DataFrame:
+        url = self._s3_input_url(context)
+        with s3fs.S3FileSystem().open(url, mode='rb') as f:
+            context.log.info(f"Reading parquet data from {url}")
+            return pl.read_parquet(f)
+
+
+@io_manager
+class S3CSVPolarsIOManager(_S3IOManager):
+
+    def handle_output(self, context: OutputContext, obj: pl.DataFrame):
+        url = self._s3_output_url(context)
+        with s3fs.S3FileSystem().open(url, mode='wb') as f:
+            context.log.info(f"Writing object to {url}")
+            obj.write_csv(f)
+
+    def load_input(self, context: InputContext) -> pl.DataFrame:
+        url = self._s3_input_url(context)
+        with s3fs.S3FileSystem().open(url, mode='rb') as f:
+            context.log.info(f"Reading csv data from {url}")
+            return pl.read_csv(f)
+
 
